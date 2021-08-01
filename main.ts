@@ -31,12 +31,16 @@ basic.forever(function () {
     roll2 = input.rotation(Rotation.Roll)
     basic.clearScreen()
     pins.analogWritePin(AnalogPin.P1, 1023)
-    if (pins.analogReadPin(AnalogPin.P2) > 500) {
-    	
-    } else {
-    	
-    }
     yaw = 0
+    if (pins.analogReadPin(AnalogPin.P2) > 500) {
+        yaw = 30
+        led.plot(3, 0)
+    } else if (pins.analogReadPin(AnalogPin.P0) > 500) {
+        yaw = -30
+        led.plot(1, 0)
+    } else {
+        led.plot(2, 0)
+    }
     if (arm == 1) {
         led.plot(0, 0)
     }
